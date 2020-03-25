@@ -1,0 +1,38 @@
+env:
+  browser: true
+overrides:
+  - files: ['./*.js']
+    env: { node: true }
+    parser: espree
+  - files: [./src/*.ts']
+    env: { node: true }
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2015
+  project: tsconfig.json
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+  - jest
+  - react
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - prettier/@typescript-eslint
+  - plugin:jest/recommended
+  - plugin:react/recommended
+settings:
+  react:
+    pragma: React
+    version: detect
+rules:
+  '@typescript-eslint/explicit-function-return-type': off
+  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - varsIgnorePattern: ^_
+      argsIgnorePattern: ^_
+  react/no-unescaped-entities: off
+  react/prop-types: off
+  react/display-name: off
