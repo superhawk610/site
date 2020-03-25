@@ -1,8 +1,6 @@
-<p align="center">
-  <a href="https://aaronross.tech">
-    <img src="./src/svgs/portrait.svg" width="60" />
-  </a>
-</p>
+<a href="https://aaronross.tech">
+  <img src="./src/svgs/portrait.svg" width="140" />
+</a>
 
 ### License
 
