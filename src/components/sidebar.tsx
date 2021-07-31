@@ -9,8 +9,8 @@ import { breakpoints } from '../constants';
 
 const Sidebar = () => (
   <Container>
-    <Link to="/">
-      <img src={owl} className="logo" aria-hidden="true" />
+    <Link to="/" className="logo">
+      <img src={owl} aria-hidden="true" />
     </Link>
 
     <Link to="/">home</Link>
@@ -48,9 +48,14 @@ const Container = styled.section`
     background: ${props => props.theme.divider};
   }
 
-  img.logo {
-    margin: 2rem 0;
-    height: 72px;
+  .logo {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    > img {
+      margin: 2rem 0;
+      height: 72px;
+    }
   }
 
   > a {
@@ -68,17 +73,17 @@ const Container = styled.section`
     align-items: center;
     justify-content: space-between;
 
-    > svg {
+    .logo > img {
       margin: 0;
+      height: auto;
       width: 60px;
-      height: 60px;
     }
 
     &::after {
       display: none;
     }
 
-    > a {
+    > a:not(.logo) {
       display: none;
     }
   }

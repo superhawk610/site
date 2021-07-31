@@ -17,10 +17,10 @@ a {
   text-decoration: none;
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
+}
 
-  &:hover {
-    border-bottom-color: var(--color-primary);
-  }
+a:hover {
+  border-bottom-color: var(--color-primary);
 }
 
 pre {
