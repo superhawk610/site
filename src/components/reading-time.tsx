@@ -12,7 +12,7 @@ const ReadingTime = ({ time }: Props) => (
 );
 
 const Container = styled.div`
-  color: ${colors.textLight};
+  color: ${colors.gray};
   margin-top: 3rem;
   text-align: right;
 `;

@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-import Logo from '../svgs/portrait.svg';
+import owl from '../images/owl.png';
 import ThemeToggle from '../components/theme-toggle';
 import Spacer from './spacer';
 import { breakpoints } from '../constants';
 
 const Sidebar = () => (
   <Container>
-    <Logo />
+    <Link to="/">
+      <img src={owl} className="logo" aria-hidden="true" />
+    </Link>
 
     <Link to="/">home</Link>
     <a href="https://github.com/superhawk610">github</a>
@@ -46,17 +48,13 @@ const Container = styled.section`
     background: ${props => props.theme.divider};
   }
 
-  > svg {
-    margin: 30px 0;
-    width: 100px;
-    stroke-width: 4px;
-
-    > path {
-      stroke: ${props => props.theme.text};
-    }
+  img.logo {
+    margin: 2rem 0;
+    height: 72px;
   }
 
   > a {
+    font-weight: 700;
     margin-bottom: 5px;
   }
 

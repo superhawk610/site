@@ -11,7 +11,7 @@ interface ArticlesQuery {
   };
 }
 
-// TODO: implement pagionation
+// TODO: implement pagination
 // ref: https://www.gatsbyjs.org/docs/adding-pagination/
 const IndexPage = () => {
   const data: ArticlesQuery = useStaticQuery(graphql`

@@ -4,4 +4,4 @@
 
 ### License
 
-&copy; 2020 Aaron Ross, all rights reserved. View full license [here](LICENSE).
+&copy; 2021 Aaron Ross, all rights reserved. View full license [here](LICENSE).

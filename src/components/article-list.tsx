@@ -42,8 +42,12 @@ const Article = styled.div`
 
   > h1 {
     display: inline-block;
-    margin: 0;
+    border-radius: 8px;
     font-size: 22px;
+
+    background: var(--color-off-background);
+    padding: 0.3rem 0.75rem;
+    margin: 0;
 
     > a {
       color: ${props => props.theme.text};

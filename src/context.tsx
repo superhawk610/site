@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { themes, defaultTheme } from './constants';
 
@@ -10,22 +10,18 @@ export interface Context {
 export const AppContext = createContext<Context>({} as Context);
 
 export const RootProvider = ({ children }: { children?: any }) => {
-  const [theme, setTheme] = useState(defaultTheme);
+  const [theme, setTheme] = useState(() =>
+    typeof window === 'undefined'
+      ? defaultTheme
+      : window.localStorage.getItem('theme') || defaultTheme,
+  );
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     window.localStorage.setItem('theme', newTheme);
+    window.document.documentElement.classList.toggle('dark');
     setTheme(newTheme);
   };
-
-  useLayoutEffect(() => {
-    const persistedTheme = window.localStorage.getItem('theme');
-    const systemTheme = window.matchMedia(`(prefers-color-scheme: dark)`)
-      .matches
-      ? 'dark'
-      : 'light';
-    setTheme(persistedTheme || systemTheme || defaultTheme);
-  }, []);
 
   return (
     <AppContext.Provider value={{ theme, toggleTheme }}>

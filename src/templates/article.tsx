@@ -117,7 +117,7 @@ const ArticleStyles = createGlobalStyle`
       background: ${props => props.theme.divider};
     }
   }
-  
+
   table {
     width: 100%;
     border-collapse: collapse;

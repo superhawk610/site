@@ -7,4 +7,23 @@
 body {
   font-family: 'Fira Sans', sans-serif;
   font-weight: 300;
+  font-size: 18px;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    border-bottom-color: var(--color-primary);
+  }
+}
+
+pre {
+  width: 100%;
+  overflow-x: auto;
 }

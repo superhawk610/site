@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { CSSColors } from '../constants';
 
 import Sidebar from './sidebar';
 import Footer from './footer';
@@ -14,18 +15,31 @@ interface Props {
   children?: any;
 }
 
-const Layout = ({ children }: Props) => (
-  <>
-    <GlobalStyles />
-    <Container>
-      <Sidebar />
-      <Content>
-        <main>{children}</main>
-        <Footer />
-      </Content>
-    </Container>
-  </>
-);
+const Layout = ({ children }: Props) => {
+  const [transitionsEnabled, setTransitionsEnabled] = useState(false);
+
+  // transitions aren't enabled by default so that the initial render
+  // is allowed to immediately set the background/text color, and
+  // transitions are only used for toggles at runtime
+  useEffect(() => {
+    const timeout = setTimeout(() => setTransitionsEnabled(true), 0);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <>
+      <CSSColors />
+      {transitionsEnabled && <CSSTransitions />}
+      <Container>
+        <Sidebar />
+        <Content>
+          <main>{children}</main>
+          <Footer />
+        </Content>
+      </Container>
+    </>
+  );
+};
 
 const Container = styled.div`
   display: flex;
@@ -54,28 +68,13 @@ const Content = styled.div`
   }
 `;
 
-const GlobalStyles = createGlobalStyle`
+const CSSTransitions = createGlobalStyle`
   body {
-    background: ${props => props.theme.background};
-    color: ${props => props.theme.text};
     transition: background 250ms ease-out, color 250ms ease-out;
   }
 
   a {
-    color: ${props => props.theme.primary};
-    text-decoration: none;
-    padding-bottom: 2px;
-    border-bottom: 2px solid transparent;
-
     transition: border-color 250ms ease-out;
-    &:hover {
-      border-bottom-color: ${props => props.theme.primary};
-    }
-  }
-
-  pre {
-    width: 100%;
-    overflow-x: auto;
   }
 `;
 

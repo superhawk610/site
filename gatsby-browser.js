@@ -1,7 +1,7 @@
 import React from 'react';
 import { RootProvider } from './src/context';
 
-import 'prismjs/themes/prism-tomorrow.css';
+import 'prism-themes/themes/prism-shades-of-purple.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/plugins/command-line/prism-command-line.css';
 

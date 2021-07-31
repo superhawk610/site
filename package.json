@@ -10,7 +10,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "yarn dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
@@ -20,6 +20,7 @@
     "gatsby-image": "^2.2.44",
     "normalize.css": "^8.0.1",
     "polished": "^3.5.1",
+    "prism-themes": "https://github.com/PrismJS/prism-themes.git",
     "prismjs": "^1.19.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
