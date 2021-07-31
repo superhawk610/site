@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useLayoutEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { themes, defaultTheme } from './constants';
 
@@ -22,6 +22,12 @@ export const RootProvider = ({ children }: { children?: any }) => {
     window.document.documentElement.classList.toggle('dark');
     setTheme(newTheme);
   };
+
+  // if we're hydrating from SSR, the initial value for the theme
+  // won't match the true value, so check it again
+  useLayoutEffect(() => {
+    setTheme(window.localStorage.getItem('theme') || defaultTheme);
+  }, []);
 
   return (
     <AppContext.Provider value={{ theme, toggleTheme }}>

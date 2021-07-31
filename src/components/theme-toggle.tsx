@@ -8,6 +8,10 @@ import Moon from '../svgs/moon.svg';
 const ThemeToggle = () => {
   const ctx = useContext(AppContext);
 
+  // don't try to SSR anything, otherwise we'll get a weird
+  // half-version of the light SVG until themes are switched
+  if (typeof window === 'undefined') return null;
+
   return (
     <Container onClick={ctx.toggleTheme}>
       {ctx.theme === 'light' ? <Sun /> : <Moon />}
