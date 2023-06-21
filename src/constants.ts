@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { transparentize } from 'polished';
 
 export const colors = {
   black: '#111',
@@ -19,7 +18,7 @@ export const colors = {
   green: 'green',
   lime: 'limegreen',
   dark: '#333',
-  aqua: '#4476c3',
+  aqua: '#3da4ff',
 };
 
 export const CSSColors = createGlobalStyle`
@@ -50,7 +49,7 @@ export const CSSColors = createGlobalStyle`
     --color-background: var(--color-white);
     --color-off-background: var(--color-off-white);
     --color-primary: var(--color-aqua);
-    --color-divider: var(--color-gray-light);
+    --color-divider: var(--color-off-white);
     --color-warning: var(--color-yellow-light);
     --color-warning-text: var(--color-dark);
   }
@@ -63,7 +62,7 @@ export const CSSColors = createGlobalStyle`
     --color-background: var(--color-black);
     --color-off-background: var(--color-off-black);
     --color-primary: var(--color-purple-light);
-    --color-divider: ${transparentize(0.8, colors.grayLight)};
+    --color-divider: var(--color-off-black);
     --color-warning: var(--color-yellow-light);
     --color-warning-text: var(--color-dark);
   }

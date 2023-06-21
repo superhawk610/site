@@ -21,6 +21,8 @@ const IndexPage = () => {
           excerpt(pruneLength: 250)
           frontmatter {
             path
+            date: date(formatString: "MMM DD, YYYY")
+            dateFromNow: date(fromNow: true)
             title
             peek
           }
@@ -32,7 +34,7 @@ const IndexPage = () => {
   const { nodes } = allMarkdownRemark;
 
   return (
-    <Layout>
+    <Layout contentWidth={600}>
       <SEO title="Home" />
       <ArticleList nodes={nodes} />
     </Layout>

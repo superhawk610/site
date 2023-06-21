@@ -27,3 +27,9 @@ pre {
   width: 100%;
   overflow-x: auto;
 }
+
+code[class*='language-'], pre[class*='language-'] {
+  line-height: 1.5 !important;
+  font-weight: 300 !important;
+  text-shadow: none !important;
+}

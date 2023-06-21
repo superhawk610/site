@@ -12,10 +12,11 @@ import './prism.css';
 import { breakpoints } from '../constants';
 
 interface Props {
+  contentWidth?: number;
   children?: any;
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ contentWidth, children }: Props) => {
   const [transitionsEnabled, setTransitionsEnabled] = useState(false);
 
   // transitions aren't enabled by default so that the initial render
@@ -33,7 +34,9 @@ const Layout = ({ children }: Props) => {
       <Container>
         <Sidebar />
         <Content>
-          <main>{children}</main>
+          <main style={contentWidth ? { maxWidth: `${contentWidth}px` } : {}}>
+            {children}
+          </main>
           <Footer />
         </Content>
       </Container>

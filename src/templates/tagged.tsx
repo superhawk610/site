@@ -37,6 +37,8 @@ export const pageQuery = graphql`
         excerpt(pruneLength: 250)
         frontmatter {
           path
+          date: date(formatString: "MMM DD, YYYY")
+          dateFromNow: date(fromNow: true)
           title
           peek
         }

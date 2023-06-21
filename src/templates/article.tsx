@@ -7,8 +7,6 @@ import SEO from '../components/seo';
 import ImportedNotice from '../components/imported-notice';
 import Tag from '../components/tag';
 
-import { colors } from '../constants';
-
 interface Props {
   data: {
     markdownRemark: {
@@ -132,7 +130,7 @@ const ArticleStyles = createGlobalStyle`
     }
 
     > tbody > tr:nth-child(odd) {
-      background: ${colors.offWhite};
+      background: var(--color-off-background);
     }
   }
 
