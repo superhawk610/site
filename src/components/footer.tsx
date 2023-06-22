@@ -16,10 +16,10 @@ const QUIPS = [
 
 const quip =
   typeof window === 'undefined'
-    ? QUIPS[0]
+    ? '...'
     : ((window as any).selectedQuip =
         (window as any).selectedQuip ||
-        QUIPS[Math.floor(Math.random() * QUIPS.length + 1)]);
+        QUIPS[Math.floor(Math.random() * QUIPS.length)]);
 
 const Footer = () => (
   <Container>
