@@ -137,8 +137,10 @@ class MyClass {
 }
 
 const c = new MyClass();
+c.print(); // foo
 
-c.print(); // undefined
+const f = c.print;
+f(); // undefined
 ```
 
 We want to print out the class's instance variable `classVariable`, but got `undefined`! By default, class methods are not
@@ -159,8 +161,10 @@ class MyClass {
 }
 
 const c = new MyClass();
-
 c.print(); // foo
+
+const f = c.print;
+f(); // foo
 ```
 
 The [Class Properties Proposal](https://github.com/tc39/proposal-class-fields) provides an idiomatic way to automatically bind
@@ -176,8 +180,8 @@ class MyClass {
 }
 
 const c = new MyClass();
-
-c.print(); // foo
+const f = c.print;
+f(); // foo
 ```
 
 Don't let the arrow function fool you - though arrow functions in the wild _do not_ have a context, in this proposal they

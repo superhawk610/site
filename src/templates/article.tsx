@@ -16,6 +16,9 @@ interface Props {
       frontmatter: Frontmatter;
     };
   };
+  pathContext: {
+    currentPage: number;
+  };
 }
 
 interface Frontmatter {
@@ -26,7 +29,7 @@ interface Frontmatter {
   imported?: boolean;
 }
 
-export default ({ data }: Props) => {
+export default ({ data, pathContext: { currentPage } }: Props) => {
   const { markdownRemark } = data;
   const { frontmatter: meta, html, excerpt } = markdownRemark;
   const tags = meta.tags || [];
@@ -35,7 +38,9 @@ export default ({ data }: Props) => {
     <Layout>
       <ArticleStyles />
       <SEO title={meta.title} description={excerpt} />
-      <Link to="/">&lt; back home</Link>
+      <Link to={currentPage === 1 ? '/' : `/blog/${currentPage}`}>
+        &lt; return home
+      </Link>
       <Heading>{meta.title}</Heading>
       {meta.subtitle && <Subheading>{meta.subtitle}</Subheading>}
       <Timestamp>{meta.date}</Timestamp>

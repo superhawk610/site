@@ -10,6 +10,9 @@ interface MarkdownNode {
 }
 
 const articleTemplate = path.resolve(`${__dirname}/templates/article.tsx`);
+const articleListTemplate = path.resolve(
+  `${__dirname}/templates/list-articles.tsx`,
+);
 const taggedTemplate = path.resolve(`${__dirname}/templates/tagged.tsx`);
 
 export async function createPages({
@@ -41,14 +44,33 @@ export async function createPages({
     return;
   }
 
+  const articles = result.data.allMarkdownRemark.edges;
+  const articlesPerPage = 6;
+  const numPages = Math.ceil(articles.length / articlesPerPage);
+
   // create article pages
-  result.data.allMarkdownRemark.edges.forEach(
-    ({ node }: { node: MarkdownNode }) =>
-      createPage({
-        path: node.frontmatter.path,
-        component: articleTemplate,
-        context: {},
-      }),
+  articles.forEach(({ node }: { node: MarkdownNode }, i: number) =>
+    createPage({
+      path: node.frontmatter.path,
+      component: articleTemplate,
+      context: {
+        currentPage: Math.floor(i / articlesPerPage) + 1,
+      },
+    }),
+  );
+
+  // create index pages
+  Array.from({ length: numPages }).forEach((_, i) =>
+    createPage({
+      path: i === 0 ? '/' : `/blog/${i + 1}`,
+      component: articleListTemplate,
+      context: {
+        limit: articlesPerPage,
+        skip: i * articlesPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
+    }),
   );
 
   // create tagged pages

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Divider from './divider';
+import Thinker from '../svgs/thinker.svg';
 
 const QUIPS = [
   'the early worm skirts the bird',
@@ -27,7 +28,10 @@ const Footer = () => (
       <em>otherwise known as </em>
       <code>superhawk610</code>
     </div>
-    <div id="quip">&gt; {quip}</div>
+    <div id="quip">
+      &gt; {quip}
+      <Thinker height={90} />
+    </div>
     <div>© {new Date().getFullYear()} all rights reserved</div>
     <div>
       built with <a href="https://www.gatsbyjs.org">Gatsby</a>
@@ -41,6 +45,7 @@ const Container = styled.footer`
   align-items: center;
   font-size: 0.8rem;
   color: ${props => props.theme.textLight};
+  padding-bottom: 2rem;
 
   > div {
     margin-bottom: 0.25rem;
@@ -51,6 +56,17 @@ const Container = styled.footer`
     font-style: italic;
     margin: 1rem 0 0.7rem;
     color: var(--color-primary);
+
+    position: relative;
+    > svg {
+      position: absolute;
+      left: calc(100% - 4px);
+      top: calc(100% + 6px);
+      opacity: 0.2;
+      > path {
+        stroke: var(--color-text-light);
+      }
+    }
   }
 `;
 
