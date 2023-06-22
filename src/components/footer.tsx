@@ -10,6 +10,7 @@ const QUIPS = [
   "at the end of it all, we're more alike than we are different",
   'do you think computers dreams of mice?',
   'calculating, calculating, one sec, please hold..',
+  "i'd like to go back to the precedented times, plz",
   'my favorite number is 87',
 ];
 
@@ -18,7 +19,7 @@ const quip =
     ? QUIPS[0]
     : ((window as any).selectedQuip =
         (window as any).selectedQuip ||
-        QUIPS[Math.floor(Math.random() * QUIPS.length)]);
+        QUIPS[Math.floor(Math.random() * QUIPS.length + 1)]);
 
 const Footer = () => (
   <Container>

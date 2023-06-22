@@ -1,14 +1,33 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { formatRelative } from 'date-fns';
 import styled from 'styled-components';
+
+interface Milestone {
+  date: string;
+  description: string;
+}
+
+// map from article path to milestone following it
+const MILESTONES: Record<string, Milestone> = {
+  '/articles/big-o-notation': {
+    date: '4 years &middot; May 2019 &mdash; June 2023',
+    description:
+      "short break, writer's block, COVID-19 pandemic, etc.<br />(totally normal stuff, i swear)",
+  },
+};
 
 interface Props {
   nodes: ArticleNode[];
+  showMilestones?: boolean;
 }
 
 export interface ArticleNode {
   excerpt: string;
+  fields: {
+    readingTime: {
+      text: string;
+    };
+  };
   frontmatter: {
     path: string;
     dateFromNow: string;
@@ -18,27 +37,47 @@ export interface ArticleNode {
   };
 }
 
-const ArticleList = ({ nodes }: Props) => (
+const ArticleList = ({ nodes, showMilestones }: Props) => (
   <>
     {nodes.length === 0 ? (
       <div>there's nothing here 🙁</div>
     ) : (
       nodes.map(node => (
-        <Article key={node.frontmatter.path}>
-          <div className="heading">
-            <h1>
-              <Link to={node.frontmatter.path}>{node.frontmatter.title}</Link>
-            </h1>
-            <span>
-              published {node.frontmatter.dateFromNow} &middot;{' '}
-              {node.frontmatter.date}
-            </span>
-          </div>
-          <p>{node.frontmatter.peek || node.excerpt}</p>
-          <p>
-            <Link to={node.frontmatter.path}>Read more...</Link>
-          </p>
-        </Article>
+        <>
+          {showMilestones && MILESTONES[node.frontmatter.path] && (
+            <MilestoneMarker>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: MILESTONES[node.frontmatter.path].date,
+                }}
+              />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: MILESTONES[node.frontmatter.path].description,
+                }}
+              />
+            </MilestoneMarker>
+          )}
+          <Article key={node.frontmatter.path}>
+            <div className="heading">
+              <h1>
+                <Link to={node.frontmatter.path}>{node.frontmatter.title}</Link>
+              </h1>
+              <span>
+                <span style={{ fontSize: '0.8em', opacity: 0.7 }}>
+                  {node.fields.readingTime.text}
+                </span>
+                <br />
+                published {node.frontmatter.dateFromNow} &middot;{' '}
+                {node.frontmatter.date}
+              </span>
+            </div>
+            <p>{node.frontmatter.peek || node.excerpt}</p>
+            <p>
+              <Link to={node.frontmatter.path}>Read more...</Link>
+            </p>
+          </Article>
+        </>
       ))
     )}
   </>
@@ -83,6 +122,21 @@ const Article = styled.div`
     font-weight: 300;
     font-size: 18px;
     line-height: 1.5;
+  }
+`;
+
+const MilestoneMarker = styled.div`
+  color: ${props => props.theme.textLight};
+  font-size: 0.9rem;
+  margin: 3rem 4rem;
+
+  > div {
+    margin-bottom: 0.3rem;
+    opacity: 0.7;
+  }
+
+  > p {
+    margin: 0;
   }
 `;
 

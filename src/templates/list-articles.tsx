@@ -31,7 +31,7 @@ const IndexPage = ({ data, pathContext: ctx }: Props) => {
   return (
     <Layout contentWidth={600}>
       <SEO title="Home" />
-      <ArticleList nodes={nodes} />
+      <ArticleList nodes={nodes} showMilestones />
       <Pagination pages={ctx.numPages} current={ctx.currentPage} />
     </Layout>
   );
@@ -46,6 +46,11 @@ export const pageQuery = graphql`
     ) {
       nodes {
         excerpt(pruneLength: 250)
+        fields {
+          readingTime {
+            text
+          }
+        }
         frontmatter {
           path
           date: date(formatString: "MMM DD, YYYY")

@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default ({ data, pageContext: ctx }: Props) => (
-  <Layout>
+  <Layout contentWidth={600}>
     <SEO title={'fixme'} />
     <Link to="/tags">&lt; all tags</Link>
     <h1 style={{ marginBottom: '3rem' }}>
@@ -35,6 +35,11 @@ export const pageQuery = graphql`
     ) {
       nodes {
         excerpt(pruneLength: 250)
+        fields {
+          readingTime {
+            text
+          }
+        }
         frontmatter {
           path
           date: date(formatString: "MMM DD, YYYY")
